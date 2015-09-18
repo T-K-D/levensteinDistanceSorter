@@ -11,7 +11,7 @@ public:
     LevenshteinSorter(string base)
     :_base(base),calculator(base){}
 
-    vector<string> sortStr(vector<string> base);
+    vector<string> sortVector(vector<string> base);
 
 private:
     string _base;
