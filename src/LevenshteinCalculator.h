@@ -7,15 +7,11 @@ using namespace std;
 class LevenshteinCalculator {
 
 public:
-    LevenshteinCalculator(string comparator)
-    :_comparator(comparator){}
+    LevenshteinCalculator(string compareSource)
+    : _compareSource(compareSource){}
     int compare(string obj);
-
-    bool operator< (string obj) { return (this->compare(obj) <  0); }
-    bool operator> (string obj) { return (this->compare(obj) >  0); }
-    bool operator==(string obj) { return (this->compare(obj) == 0); }
 private:
-    string _comparator;
+    string _compareSource;
     unordered_map<string,int> compareResults;
 };
 

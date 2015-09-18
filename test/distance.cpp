@@ -1,15 +1,13 @@
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE Hello
+#define BOOST_TEST_MODULE Distances
 #include "../src/LevenshteinCalculator.h"
 #include <boost/test/unit_test.hpp>
-#include <string>
 using namespace std;
 
 
 BOOST_AUTO_TEST_CASE(add_one) {
     LevenshteinCalculator calculator("ant");
-    calculator.compare("aunt");
-    BOOST_CHECK_EQUAL(2, 1);
+    BOOST_CHECK_EQUAL(calculator.compare("aunt"), 1);
 }
 
 
@@ -41,3 +39,4 @@ BOOST_AUTO_TEST_CASE(complex_move_three) {
     LevenshteinCalculator calculator("Saturday");
     BOOST_CHECK_EQUAL(calculator.compare("Sunday"), 3);
 }
+
