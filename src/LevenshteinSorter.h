@@ -18,5 +18,6 @@ private:
     LevenshteinCalculator calculator;
 };
 
+vector<string> getFileContents(string filename);
 
 #endif //LEVENSTEINDISTANCESORTER_LEVENSHTEINSORTER_H
