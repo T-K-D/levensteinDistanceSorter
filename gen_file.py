@@ -1,5 +1,6 @@
 import string
 import random
+import sys
 
 def string_generator():
     size=random.randint(500, 1000)
@@ -13,4 +14,4 @@ def gen_file(length=1000):
             outfile.write(string_generator() + "\n")
 
 
-gen_file()
+gen_file(sys.argv[1])
