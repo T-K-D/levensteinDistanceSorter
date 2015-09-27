@@ -11,12 +11,12 @@ class LevenshteinCalculator {
 public:
     LevenshteinCalculator(string compareSource)
     : _compareSource(compareSource){}
-    int compare(string obj) {
+    size_t compare(const string& obj) {
         //memoization
         if (compareResults.count(obj) > 0){
             return compareResults[obj];
         }
-        int res;
+        size_t res;
         if (_compareSource.length() == 0){
             res = obj.length();
         } else if (obj.length() == 0) {
@@ -26,7 +26,7 @@ public:
         }else {
             //res = compareRecursive(obj);
             //res = compareWagnerFischer(obj);
-            res = compareWithTwoMatrixRows(obj);
+            //res = compareWithTwoMatrixRows(obj);
         }
         compareResults[obj] = res;
         return res;
@@ -35,9 +35,9 @@ public:
 private:
     string _compareSource;
     unordered_map<string,int> compareResults;
-    size_t compareRecursive(string& obj);
-    size_t compareWagnerFischer(string& obj);
-    size_t compareWithTwoMatrixRows(string& obj);
+    size_t compareRecursive(const string& obj);
+    size_t compareWagnerFischer(const string& obj);
+    size_t compareWithTwoMatrixRows(const string& obj);
 };
 
 

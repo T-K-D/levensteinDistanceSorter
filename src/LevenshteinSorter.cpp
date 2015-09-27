@@ -1,14 +1,12 @@
 #include <algorithm>
 #include <fstream>
 #include "LevenshteinSorter.h"
-#include <iostream>
 
-vector<string> LevenshteinSorter::sortVector(vector<string> base) {
+void LevenshteinSorter::sortVector(vector<string>& base) {
     sort(base.begin(),base.end(),
-         [&] (string x, string y) {
+         [&] (const string& x,const string& y) {
              return calculator.compare(x) > calculator.compare(y);
          });
-    return base;
 }
 
 vector<string> getFileContents(string filename) {

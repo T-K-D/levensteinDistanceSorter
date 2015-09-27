@@ -1,7 +1,8 @@
 #include "LevenshteinCalculator.h"
 #include <vector>
 #include <algorithm>
-size_t levHelper(string &s, int len_s, string &t, int len_t){
+
+size_t levHelper(const string &s, size_t len_s,const string &t, size_t len_t){
     if (len_s == 0) return len_t;
     if (len_t == 0) return len_s;
     int cost = (s[len_s-1] == t[len_t-1]) ? 0 : 1;
@@ -10,14 +11,15 @@ size_t levHelper(string &s, int len_s, string &t, int len_t){
                levHelper(s,len_s    , t, len_t - 1) + 1,
                levHelper(s,len_s - 1, t, len_t - 1) + cost});
 };
+
 //recursive algorithm (from definition)
-size_t LevenshteinCalculator::compareRecursive(string& obj) {
+size_t LevenshteinCalculator::compareRecursive(const string& obj) {
     return levHelper(_compareSource, _compareSource.length(), obj, obj.length());
 }
 
 
 //Wagner-Fischer algorithm
-size_t LevenshteinCalculator::compareWagnerFischer(string& obj){
+size_t LevenshteinCalculator::compareWagnerFischer(const string& obj){
     //init matrix of size [compareSource.length() + 1][obj.length() + 1]
     const unsigned long m = _compareSource.length() + 1;
     const unsigned long n = obj.length() + 1;
@@ -42,9 +44,9 @@ size_t LevenshteinCalculator::compareWagnerFischer(string& obj){
     return matrix[m - 1][n - 1];
 }
 
-size_t LevenshteinCalculator::compareWithTwoMatrixRows(string& obj) {
-    vector<size_t > firstRow = vector<size_t >(obj.length() + 1);
-    vector<size_t > secondRow= vector<size_t >(obj.length() + 1);
+size_t LevenshteinCalculator::compareWithTwoMatrixRows(const string& obj) {
+    vector<size_t> firstRow(obj.length() + 1);
+    vector<size_t> secondRow(obj.length() + 1);
     for(size_t i = 0; i < obj.length() + 1; i++){
         secondRow[i] = i;
     }
