@@ -5,7 +5,7 @@
 void LevenshteinSorter::sortVector(vector<string>& base) {
     sort(base.begin(),base.end(),
          [&] (const string& x,const string& y) {
-             return calculator.compare(x) > calculator.compare(y);
+             return calculator.compare(x) < calculator.compare(y);
          });
 }
 

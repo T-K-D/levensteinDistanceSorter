@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE Distances
-#include "../src/LevenshteinCalculator.h"
+#include "../src/LevenshteinSorter.h"
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_CASE(add_one) {
@@ -33,3 +33,33 @@ BOOST_AUTO_TEST_CASE(replace_remove) {
     BOOST_CHECK_EQUAL(calculator.compare("Sunday"), 3);
 }
 
+BOOST_AUTO_TEST_CASE(sort_sorted) {
+    vector<string> lst = {"a","aa","aaa","aaaa"};
+    LevenshteinSorter s("a");
+    s.sortVector(lst);
+    vector<string> res = {"a","aa","aaa","aaaa"};
+    for(int i = 0; i < res.size(); i++) {
+        BOOST_CHECK_EQUAL(lst[i], res[i]);
+    }
+}
+
+
+BOOST_AUTO_TEST_CASE(sort_reversed) {
+    vector<string> lst = {"aaaa","aaa","aa", "a",};
+    LevenshteinSorter s("a");
+    s.sortVector(lst);
+    vector<string> res = {"a","aa","aaa","aaaa"};
+    for(int i = 0; i < res.size(); i++) {
+        BOOST_CHECK_EQUAL(lst[i], res[i]);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(sort_shuffled) {
+    vector<string> lst = {"sydney","sand","sample", "dendy",};
+    LevenshteinSorter s("sendy");
+    s.sortVector(lst);
+    vector<string> res = {"dendy","sand","sydney","sample"};
+    for(int i = 0; i < res.size(); i++) {
+        BOOST_CHECK_EQUAL(lst[i], res[i]);
+    }
+}
