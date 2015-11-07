@@ -3,6 +3,12 @@ project(levensteinDistanceSorter)
 find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
 
 
+## Compiler flags
+if(CMAKE_COMPILER_IS_GNUCXX)
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3")        ## Optimization for release build
+    set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os")     ## Optimization for MinRelSize build
+endif()
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES src/main.cpp)

@@ -26,7 +26,7 @@ public:
         }else {
             //res = compareRecursive(obj);
             //res = compareWagnerFischer(obj);
-            //res = compareWithTwoMatrixRows(obj);
+            res = compareWithTwoMatrixRows(obj);
         }
         compareResults[obj] = res;
         return res;
