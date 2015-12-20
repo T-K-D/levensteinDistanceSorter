@@ -6,6 +6,8 @@
 #include <iostream>
 #include <iomanip>
 #include <omp.h>
+#include <parallel/algorithm>
+
 using namespace std;
 class LevenshteinCalculator {
 
