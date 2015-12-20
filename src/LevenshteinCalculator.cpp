@@ -51,14 +51,17 @@ size_t LevenshteinCalculator::compareWithTwoMatrixRows(const string& obj) {
         secondRow[i] = i;
     }
 
-    for (size_t i = 0; i < _compareSource.length(); i++){
-        firstRow[0] = i + 1;
-        for(int j = 0; j < obj.length(); j++){
-            int cost = (_compareSource[i] == obj[j]) ? 0 : 1;
-            firstRow[j + 1] = min({firstRow[j] + 1, secondRow[j + 1] + 1, secondRow[j] + cost});
+    #pragma omp parallel for
+        for (size_t i = 0; i < _compareSource.length(); i++){
+            firstRow[0] = i + 1;
+
+            #pragma omp parallel for
+                for(int j = 0; j < obj.length(); j++){
+                    int cost = (_compareSource[i] == obj[j]) ? 0 : 1;
+                    firstRow[j + 1] = min({firstRow[j] + 1, secondRow[j + 1] + 1, secondRow[j] + cost});
+                }
+            firstRow.swap(secondRow);
         }
-        firstRow.swap(secondRow);
-    }
 
     return secondRow[obj.length()];
 }

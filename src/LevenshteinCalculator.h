@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <iostream>
 #include <iomanip>
+#include <omp.h>
 using namespace std;
 class LevenshteinCalculator {
 
