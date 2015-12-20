@@ -3,7 +3,7 @@
 #include "LevenshteinSorter.h"
 
 void LevenshteinSorter::sortVector(vector<string>& base) {
-    sort(base.begin(),base.end(),
+    __gnu_parallel::sort(base.begin(),base.end(),
          [&] (const string& x,const string& y) {
              return calculator.compare(x) < calculator.compare(y);
          });
